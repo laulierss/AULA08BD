@@ -1,0 +1,41 @@
+-- TABELA DE ESTOQUE DE VEÍCULOS
+CREATE TABLE IF NOT EXISTS veiculos_estoque (
+  id SERIAL PRIMARY KEY,
+  modelo VARCHAR(80) NOT NULL,
+  marca VARCHAR(40) NOT NULL,
+  ano_fabricacao INT NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+  quilometragem INT NOT NULL,
+  combustivel VARCHAR(30) NOT NULL
+);
+
+INSERT INTO veiculos_estoque (modelo, marca, ano_fabricacao, preco, quilometragem, combustivel) VALUES
+('Corolla Cross XRE', 'Toyota', 2023, 149900.00, 18500, 'Flex'),
+('Civic Touring Turbo', 'Honda', 2021, 138000.00, 39000, 'Gasolina'),
+('Compass Limited T270', 'Honda', 2024, 178500.00, 4200, 'Flex'),
+('Polo GTS 1.4 TSI', 'Volkswagen', 2022, 112000.00, 29000, 'Flex'),
+('Hilux SRV 4x4 Diesel', 'Toyota', 2020, 198000.00, 68000, 'Diesel'),
+('Kwid Zen 1.0', 'Renault', 2022, 49900.00, 35000, 'Flex');
+
+-- -- MISSÃO 1
+SELECT 
+    modelo AS "Carro",
+    marca AS "Fabricante",
+    preco AS "Valor de Venda"
+FROM veiculos_estoque;
+
+-- -- MISSÃO 2
+SELECT 
+    preco,
+    (preco * 1.10) AS "IPVA Estimado (4%)"
+FROM veiculos_estoque;
+
+-- -- MISSÃO 3
+SELECT ano_fabricacao, quilometragem
+FROM veiculos_estoque
+WHERE (ano_fabricacao >= 2022) AND (quilometragem <= 30.000);
+
+-- MISSÃO 4
+SELECT modelo, preco
+FROM veiculos_estoque
+ORDER BY preco DESC LIMIT 3;
